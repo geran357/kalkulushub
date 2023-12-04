@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        .calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+        }
+    
+        .calculator-screen {
+            font-size: 2em;
+            height: 70px; /* Disesuaikan dengan tinggi yang diinginkan */
+            text-align: right;
+            padding: 0.5em;
+            border: none;
+            outline: none;
+            width: 200px;
+            height: 100px;
+            margin: auto;
+        }
+    
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            padding: 1em;
+        }
+    
+        .calculator-keys button {
+            font-size: 1.5em;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+    
+        .calculator-keys button.operator {
+            background-color: #3b58fc;
+        }
+    
+        .calculator-keys button.equals {
+            background-color: rgb(0, 162, 255);
+            grid-column: span 2;
+        }
+    
+        .calculator-keys button:active {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!--side bar editor-->
+    <main>
+        <input type="checkbox" id="check">
+        <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fa fa-arrow-right" id="open"></i>
+        </label>
+        <div class="sidebar">
+            <div class="top">
+                Sidebar
+            </div>  
+            <ul>
+                <li><a class="#" href="/index.html"><i class="fa fa-home"></i> LOGIN</a></li>
+                <li><a class="#" href="/home page/home.html"><i class="fa fa-shopping-basket"></i> HOME</a></li>
+                <li><a class="#" href="/layout/layout.html"><i class="fa fa-shopping-bag"></i> MAIN MENU</a></li>
+                
+            </ul>
+        </div>
+        <section>
+            <h1>KALKULATOR<BR>SEDERHANA</h1>
+        </section>
+    </main>
+
+    <!--calculator konten dan style javascript-->
+    <div class="calculator">
+        <input type="text" class="calculator-screen" value="" disabled />
+    
+        <div class="calculator-keys">
+            <button onclick="appendToScreen('7')">7</button>
+            <button onclick="appendToScreen('8')">8</button>
+            <button onclick="appendToScreen('9')">9</button>
+            <button class="operator" onclick="appendToScreen('/')">/</button>
+    
+            <button onclick="appendToScreen('4')">4</button>
+            <button onclick="appendToScreen('5')">5</button>
+            <button onclick="appendToScreen('6')">6</button>
+            <button class="operator" onclick="appendToScreen('*')">*</button>
+    
+            <button onclick="appendToScreen('1')">1</button>
+            <button onclick="appendToScreen('2')">2</button>
+            <button onclick="appendToScreen('3')">3</button>
+            <button class="operator" onclick="appendToScreen('-')">-</button>
+    
+            <button onclick="appendToScreen('0')">0</button>
+            <button onclick="appendToScreen('.')">.</button>
+            <button class="del" onclick="deleteLast()">DEL</button>
+            <button class="equals" onclick="calculate()">=</button>
+            <button class="operator" onclick="appendToScreen('+')">+</button>
+        </div>
+    </div>
+    
+    <script>
+        const screen = document.querySelector('.calculator-screen');
+        let currentInput = '';
+    
+        function appendToScreen(value) {
+            currentInput += value;
+            screen.value = currentInput;
+        }
+    
+        function calculate() {
+            try {
+                currentInput = eval(currentInput);
+                screen.value = currentInput;
+            } catch (error) {
+                screen.value = 'Error';
+            }
+        }
+
+        function deleteLast() {
+            currentInput = currentInput.slice(0, -1);
+            screen.value = currentInput;
+        }
+    </script>
+    
+</body>
+</html>
